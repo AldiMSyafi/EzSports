@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <group android:checkableBehavior="single">
+        <item   android:id="@+id/news"
+                android:title="News">
+            <menu>
+                <item
+                    android:id="@+id/nav_info_tour"
+                    android:title="Info Tournament"
+                    />
+                <item
+                    android:id="@+id/nav_article"
+                    android:title="Article" />
+            </menu>
+        </item>
+
+        <item   android:id="@+id/gamenews"
+                android:title="Game News">
+            <menu>
+                <item
+                    android:id="@+id/nav_dota"
+                    android:title="Dota 2"
+                    />
+                <item
+                    android:id="@+id/nav_csgo"
+                    android:title="CSGO" />
+                <item
+                    android:id="@+id/nav_apex"
+                    android:title="Apex">
+
+                </item>
+
+            </menu>
+        </item>
+        <item   android:id="@+id/ezsports"
+                android:title="EzSports">
+            <menu>
+                <item
+                    android:id="@+id/rate"
+                    android:title="Rate"
+                    />
+                <item
+                    android:id="@+id/share"
+                    android:title="Share"
+                    />
+                <item
+                    android:id="@+id/nav_admin"
+                    android:title="Admin"
+                    />
+
+            </menu>
+        </item>
+    </group>
+</menu>
