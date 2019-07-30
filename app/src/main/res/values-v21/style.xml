@@ -4,9 +4,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+
     </style>
     <style name="txtapp">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">#525254</item>
         <item name="android:textSize">20sp</item>
     </style>
 </resources>

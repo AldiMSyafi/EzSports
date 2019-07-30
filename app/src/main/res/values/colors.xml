@@ -5,4 +5,9 @@
     <color name="thirdrcolor">#596f87</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#75C2F9</color>
+
+    <color name="topbar">#282b3b</color>
+    <color name="sidebar">#282b3b</color>
+    <color name="sidebarheader">#010c1f</color>
+
 </resources>
