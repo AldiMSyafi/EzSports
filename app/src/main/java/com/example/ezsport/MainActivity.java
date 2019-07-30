@@ -23,15 +23,16 @@ import com.example.ezsport.Fragment.Info;
  membuat splash screen 05-07-2019 8.00 */
 public class MainActivity extends AppCompatActivity {
 
-
+    //waktu lamanya loading splash screen 2000=2detik
     private int waktu_loading=2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        //memanggil splash screen dari layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //menampilkan dan langsung menuju ke HomeActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -28,10 +28,14 @@ import com.example.ezsport.Fragment.Info;
 
  CHANGELOG
  membuat splash screen 05-07-2019 8.00
- Membuat tampilan Side bar 06-07-2019 10.00
+ Membuat tampilan navigation view 06-07-2019 10.00
  membuat tampilan menu utama 06-07-2019 13.00
  membuat tampilan info tournament 06-07-2019 14.00
  membuat tampilan article 06-07-2019 14.30
+ membuat tampilan article 07-07-2019 12.30
+ membuat tampilan article 07-07-2019 13.00
+ membuat tampilan article 07-07-2019 14.00
+
 
  */
 
@@ -40,7 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawer;
 
-
+    //menampilkan navigation view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_article);
 
                 }
+                //merubah warna dan ukuran title di navigation bar
        NavigationView navview = (NavigationView) findViewById(R.id.nav_view);
         Menu menu = navview.getMenu();
         MenuItem news= menu.findItem(R.id.news);
@@ -90,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
+    //Menghubungkan tiap fragment yang ada di navigation bar
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
@@ -126,7 +131,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    //fungsi menutup navigation view
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)){

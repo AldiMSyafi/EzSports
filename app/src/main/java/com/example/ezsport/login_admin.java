@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class login_admin extends AppCompatActivity {
     private EditText userMail,userPassword;
@@ -35,6 +36,8 @@ public class login_admin extends AppCompatActivity {
         HomeActivity = new Intent(this,Menu_Utama_Admin.class);
 
         loginprogress.setVisibility(View.INVISIBLE);
+
+        //fungsi tombol
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,7 @@ public class login_admin extends AppCompatActivity {
                 final String mail = userMail.getText().toString();
                 final String password = userPassword.getText().toString();
 
+                //validasi login
                 if(mail.isEmpty()||password.isEmpty()){
                     showMessage("Lengkapi Semua Kolom");
                 }
@@ -58,6 +62,7 @@ public class login_admin extends AppCompatActivity {
 
     private void signin(String mail, String password) {
 
+        //login menggunakan email dan password dari firebase
         mAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -87,4 +92,15 @@ public class login_admin extends AppCompatActivity {
     private void showMessage(String text) {
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
     }
+
+    //agar user langsung login ketika masuk
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user= mAuth.getCurrentUser();
+
+        if (user !=null){
+            updateUI();
+        }
+    }*/
 }
