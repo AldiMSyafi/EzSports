@@ -1,5 +1,6 @@
 package com.example.ezsport.Adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.ezsport.Detail_Artikel;
+import com.example.ezsport.Detail_info;
 import com.example.ezsport.Upload_Info;
 
 import com.squareup.picasso.Picasso;
@@ -58,6 +62,20 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
 
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             imageView = itemView.findViewById(R.id.image_view_upload);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent DetailInfo =  new Intent(mContext, Detail_info.class);
+                    int position = getAdapterPosition();
+
+                    DetailInfo.putExtra("title",mUploads.get(position).getmTitleinfo());
+                    DetailInfo.putExtra("desc",mUploads.get(position).getmDescinfo());
+                    DetailInfo.putExtra("image",mUploads.get(position).getmImageUrl());
+
+                    mContext.startActivity(DetailInfo);
+                }
+            });
 
         }
     }

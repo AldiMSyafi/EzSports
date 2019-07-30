@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/detail_img_artikel"
+            android:id="@+id/detail_img_info"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/detail_title_artikel"
+            android:id="@+id/detail_title_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -35,7 +35,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_img_artikel" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_img_info" />
 
         <View
             android:id="@+id/view"
@@ -47,10 +47,10 @@
             android:background="#2e2e2e"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_title_artikel" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_title_info" />
 
         <TextView
-            android:id="@+id/detail_desc_artikel"
+            android:id="@+id/detail_desc_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
