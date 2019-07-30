@@ -36,7 +36,7 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder imageViewHolder, int position) {
                 Upload_Info uploadcurrent =mUploads.get(position);
-                imageViewHolder.textViewDesc.setText(uploadcurrent.getmDescinfo());
+                imageViewHolder.textViewTitle.setText(uploadcurrent.getmTitleinfo());
                 Picasso.get()
                         .load(uploadcurrent.getmImageUrl())
                         .fit()
@@ -50,13 +50,13 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewDesc;
+        public TextView textViewTitle;
         public ImageView imageView;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewDesc = itemView.findViewById(R.id.text_view_desc);
+            textViewTitle = itemView.findViewById(R.id.text_view_title);
             imageView = itemView.findViewById(R.id.image_view_upload);
 
         }
