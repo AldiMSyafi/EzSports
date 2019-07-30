@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -78,9 +79,15 @@ public class Content_Info extends AppCompatActivity {
         if (mImageUri != null) {
             final StorageReference fileReferences = mStorageRef_info.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
-            mUploadTask_info = fileReferences.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mUploadTask_info = fileReferences.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!urlTask.isSuccessful());
+                    Uri downloadurl = urlTask.getResult();
+
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -90,7 +97,7 @@ public class Content_Info extends AppCompatActivity {
                     }, 500);
                     Toast.makeText(Content_Info.this, "Upload berhasil", Toast.LENGTH_LONG).show();
                     Upload_Info upload = new Upload_Info(mPostTitle_info.getText().toString(),
-                            mPostDesc_info.getText().toString(), taskSnapshot.getStorage().getDownloadUrl().toString());
+                            mPostDesc_info.getText().toString(), downloadurl.toString());
                     String uploadid = mDatabaseref_info.push().getKey();
                     mDatabaseref_info.child(uploadid).setValue(upload);
 

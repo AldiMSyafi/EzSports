@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ezsport.Adapter.imageAdapter;
@@ -29,6 +30,7 @@ import java.util.List;
 public class Article extends Fragment {
         private RecyclerView mRecyclerView;
         private imageAdapter mAdapter;
+        private ProgressBar mProgressCircle;
 
         private DatabaseReference mDatabaseRef;
         private StorageReference mStorageRef;
@@ -43,6 +45,7 @@ public class Article extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_images, container, false);
 
+        mProgressCircle = (ProgressBar) view.findViewById(R.id.progress_circle);
         mRecyclerView =  view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRecyclerView.setHasFixedSize(true);
@@ -65,11 +68,14 @@ public class Article extends Fragment {
             }
                 mAdapter = new imageAdapter(getActivity(),mUploads1);
                 mRecyclerView.setAdapter(mAdapter);
+
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
 

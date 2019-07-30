@@ -30,7 +30,7 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.image_item_info, viewGroup, false);
-        return null;
+        return new ImageViewHolder(view);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mUploads.size();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
@@ -56,6 +56,8 @@ public class ImageAdapter_info extends RecyclerView.Adapter<ImageAdapter_info.Im
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            textViewDesc = itemView.findViewById(R.id.text_view_desc);
+            imageView = itemView.findViewById(R.id.image_view_upload);
 
         }
     }
