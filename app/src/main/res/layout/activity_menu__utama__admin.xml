@@ -80,6 +80,26 @@
                 android:text="Dota"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
+            <Button
+                android:id="@+id/btn_csgo"
+                android:layout_width="270dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_button"
+                android:text="Csgo"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+            <Button
+                android:id="@+id/btn_apex"
+                android:layout_width="270dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_button"
+                android:text="Apex"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

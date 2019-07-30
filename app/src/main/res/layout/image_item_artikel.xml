@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:backgroundTint="#1e1e1f"
-    android:background="@color/sidebar"
+
     app:cardCornerRadius="8dp">
 
     <android.support.constraint.ConstraintLayout
