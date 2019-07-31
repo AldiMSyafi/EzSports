@@ -9,10 +9,13 @@ import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.ezsport.Fragment.Info;
+import com.jaeger.library.StatusBarUtil;
 
 /*
  10116065
@@ -23,15 +26,20 @@ import com.example.ezsport.Fragment.Info;
  membuat splash screen 05-07-2019 8.00 */
 public class MainActivity extends AppCompatActivity {
 
+
     //waktu lamanya loading splash screen 2000=2detik
     private int waktu_loading=2000;
-
+    private Window mWindow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         //memanggil splash screen dari layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mWindow = getWindow();
+        mWindow.getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         //menampilkan dan langsung menuju ke HomeActivity
         new Handler().postDelayed(new Runnable() {
             @Override
