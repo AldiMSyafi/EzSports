@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImagesActivity_dota"></activity>
+        <activity android:name=".Content_Apex"></activity>
+        <activity android:name=".Content_Csgo" />
+        <activity android:name=".ImagesActivity_Apex" />
+        <activity android:name=".ImagesActivity_csgo" />
+        <activity android:name=".ImagesActivity_dota" />
         <activity android:name=".Content_Dota" />
         <activity android:name=".Detail_info" />
         <activity android:name=".Detail_Artikel" />
