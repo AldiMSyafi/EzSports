@@ -12,6 +12,7 @@ public class Menu_Utama_Admin extends AppCompatActivity {
     private Intent Conten_Artikel;
     private Intent Content_Info;
     private Intent Content_Dota;
+    private Intent Content_Csgo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,10 @@ public class Menu_Utama_Admin extends AppCompatActivity {
         Conten_Artikel = new Intent(this,Content_Artikel.class);
         Content_Info = new Intent(this,Content_Info.class);
         Content_Dota = new Intent(this, com.example.ezsport.Content_Dota.class);
+        Content_Csgo = new Intent(this, com.example.ezsport.Content_Csgo.class);
 
         HomeActivity = new  Intent (this,HomeActivity.class);
+
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +57,11 @@ public class Menu_Utama_Admin extends AppCompatActivity {
                 startActivity(Content_Dota);
             }
         });
-
+        btncsgo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(Content_Csgo);
+            }
+        });
     }
 }
