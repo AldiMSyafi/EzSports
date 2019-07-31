@@ -27,12 +27,6 @@
                 <item
                     android:id="@+id/nav_csgo"
                     android:title="CSGO" />
-                <item
-                    android:id="@+id/nav_apex"
-                    android:title="Apex">
-
-                </item>
-
             </menu>
         </item>
         <item   android:id="@+id/ezsports"

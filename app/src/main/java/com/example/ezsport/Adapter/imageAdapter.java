@@ -10,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ezsport.Detail_Artikel;
-import com.example.ezsport.Upload;
+import com.example.ezsport.Detail.Detail_Artikel;
 
 import com.example.ezsport.Upload_Info;
 import com.squareup.picasso.Picasso;

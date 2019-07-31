@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ezsport.Content.Content_Artikel;
+
 public class Menu_Utama_Admin extends AppCompatActivity {
-    private Button btnlogout,btnartikel,btninfo,btndota,btncsgo,btnapex;
+    private Button btnlogout,btnartikel,btninfo,btndota,btncsgo;
     private Intent HomeActivity;
     private Intent Conten_Artikel;
     private Intent Content_Info;
@@ -23,13 +25,13 @@ public class Menu_Utama_Admin extends AppCompatActivity {
         btninfo = findViewById(R.id.btn_info);
         btndota = findViewById(R.id.btn_dota);
         btncsgo = findViewById(R.id.btn_csgo);
-        btnapex = findViewById(R.id.btn_apex);
 
 
-        Conten_Artikel = new Intent(this,Content_Artikel.class);
-        Content_Info = new Intent(this,Content_Info.class);
-        Content_Dota = new Intent(this, com.example.ezsport.Content_Dota.class);
-        Content_Csgo = new Intent(this, com.example.ezsport.Content_Csgo.class);
+
+        Conten_Artikel = new Intent(this, Content_Artikel.class);
+        Content_Info = new Intent(this, com.example.ezsport.Content.Content_Info.class);
+        Content_Dota = new Intent(this, com.example.ezsport.Content.Content_Dota.class);
+        Content_Csgo = new Intent(this, com.example.ezsport.Content.Content_Csgo.class);
 
         HomeActivity = new  Intent (this,HomeActivity.class);
 

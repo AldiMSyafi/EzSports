@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Content_Dota">
+    tools:context=".Content.Content_Dota">
     <ImageButton
         android:id="@+id/imageSelect_dota"
         android:layout_width="match_parent"

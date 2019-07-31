@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.ezsport.Adapter.ImageAdapter_info;
 import com.example.ezsport.Adapter.imageAdapter;
+import com.example.ezsport.HomeActivity;
 import com.example.ezsport.R;
 import com.example.ezsport.Upload_Info;
 import com.google.firebase.database.DataSnapshot;
@@ -41,7 +42,7 @@ public class Info extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.activity_images_info, container, false);
-
+        ((HomeActivity)getActivity()).setActionBarTitle("Info Tournament");
         mProgressCircle = (ProgressBar) view.findViewById(R.id.progress_circle2);
         mRecyclerView1 =  view.findViewById(R.id.recycler_view2);
         mRecyclerView1.setLayoutManager(new LinearLayoutManager(this.getActivity()));

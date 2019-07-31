@@ -1,4 +1,4 @@
-package com.example.ezsport;
+package com.example.ezsport.Detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.ezsport.R;
 
 public class Detail_info extends AppCompatActivity {
     private ImageView imgPost;

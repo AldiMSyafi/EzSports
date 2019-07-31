@@ -1,11 +1,11 @@
-package com.example.ezsport;
+package com.example.ezsport.Content;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.ezsport.R;
+import com.example.ezsport.Upload_Info;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,80 +29,60 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-public class Content_Artikel extends AppCompatActivity {
-
+public class Content_Dota extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
-    private ImageButton mSelectImage;
-    private EditText mPostTitle;
-    private EditText mPostDesc;
-    private Button mSubmitBtn;
-    private StorageReference mstorageRef;
-    private DatabaseReference mDatabaseref;
+    private ImageButton mSelectImage_dota;
+    private EditText mPostTitle_dota;
+    private EditText mPostDesc_dota;
+    private Button mSubmitBtn_dota;
+    private StorageReference mstorageRef_dota;
+    private DatabaseReference mDatabaseref_dota;
     private ProgressBar mProgressBar;
-    private StorageTask mUploadTask;
+    private StorageTask mUploadTask_dota;
     private Uri mImageUri;
 
-    //set layout yang akan di tampilakn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content__artikel);
+        setContentView(R.layout.activity_content__dota);
 
-        //memanggil id
-        mSelectImage = findViewById(R.id.imageSelect_artikel);
-        mPostTitle = findViewById(R.id.titleField_artikel);
-        mPostDesc = findViewById(R.id.descField_artikel);
+        mSelectImage_dota = findViewById(R.id.imageSelect_dota);
+        mPostTitle_dota = findViewById(R.id.titleField_dota);
+        mPostDesc_dota = findViewById(R.id.descField_dota);
         mProgressBar = findViewById(R.id.progressBar2);
-        mSubmitBtn = findViewById(R.id.submitButton_artikel);
+        mSubmitBtn_dota = findViewById(R.id.submitButton_dota);
 
-        mstorageRef = FirebaseStorage.getInstance().getReference("Article");
-        mDatabaseref = FirebaseDatabase.getInstance().getReference("Article");
+        mstorageRef_dota = FirebaseStorage.getInstance().getReference("Dota");
+        mDatabaseref_dota = FirebaseDatabase.getInstance().getReference("Dota");
 
-
-        mSelectImage.setOnClickListener(new View.OnClickListener() {
+        mSelectImage_dota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFilechoser();
-
+                openfilechooser();
             }
         });
-
-        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+        mSubmitBtn_dota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(Content_Artikel.this, "Sedang Mengupload Gambar", Toast.LENGTH_SHORT).show();
+                if (mUploadTask_dota != null && mUploadTask_dota.isInProgress()) {
+                    Toast.makeText(Content_Dota.this, "sedang upload", Toast.LENGTH_SHORT).show();
                 } else {
-                    startPosting();
-
+                    uploadfile();
                 }
-
-
             }
         });
-    }
-
-
-    private String getFileExtension(Uri uri) {
-        ContentResolver cR = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-
 
     }
 
-    //upload gambar,title,deskripsi ke database
-    private void startPosting() {
-
-
+    private void uploadfile() {
         if (mImageUri != null) {
-            StorageReference filereferences = mstorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-
-            mUploadTask = filereferences.putFile(mImageUri)
+            final StorageReference fileReferences = mstorageRef_dota.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUri));
+            mUploadTask_dota = fileReferences.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri downloadurl = urlTask.getResult();
@@ -111,28 +93,20 @@ public class Content_Artikel extends AppCompatActivity {
                                 public void run() {
                                     mProgressBar.setProgress(0);
                                 }
-                                //delay progress bar
                             }, 500);
+                            Toast.makeText(Content_Dota.this, "Upload berhasil", Toast.LENGTH_LONG).show();
+                            Upload_Info upload = new Upload_Info(mPostTitle_dota.getText().toString(),
+                                    mPostDesc_dota.getText().toString(), downloadurl.toString());
+                            String uploadid = mDatabaseref_dota.push().getKey();
+                            mDatabaseref_dota.child(uploadid).setValue(upload);
 
-                            //ngirim data ke realtime database firebase
-                            Toast.makeText(Content_Artikel.this, "berhasil di simpan", Toast.LENGTH_LONG).show();
-                            Upload_Info upload = new Upload_Info(mPostTitle.getText().toString(), mPostDesc.getText().toString(),
-                            downloadurl.toString());
-
-                            String uploadId = mDatabaseref.push().getKey();
-                            mDatabaseref.child(uploadId).setValue(upload);
-
-                    //saat gagal ada pemberitahuan gagal
                         }
-
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Content_Artikel.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(Content_Dota.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        //saat berhasil progress bar akan jalan
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -141,37 +115,38 @@ public class Content_Artikel extends AppCompatActivity {
                             mProgressBar.setProgress((int) progress);
                         }
                     });
-        } else {
-            showMessage("isi semua field");
+
         }
+        else {
+            Toast.makeText(Content_Dota.this, "File tidak di temukan", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
-    private void showMessage(String message) {
-        Toast.makeText(Content_Artikel.this, message, Toast.LENGTH_LONG).show();
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR2 = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR2.getType(uri));
     }
 
-    //mengambil gambar di galeri
-    private void openFilechoser() {
 
-
+    //mengambil gambar dari storage handpone
+    private void openfilechooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
-    //mengambil gambar dari storage hp
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
+                && data != null && data.getData() != null) {
             mImageUri = data.getData();
-
-            Picasso.get().load(mImageUri).fit().into(mSelectImage);
-            mSelectImage.setImageURI(mImageUri);
+            Picasso.get().load(mImageUri).fit().into(mSelectImage_dota);
         }
     }
 }
-
-

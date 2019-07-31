@@ -1,4 +1,4 @@
-package com.example.ezsport;
+package com.example.ezsport.Content;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.ezsport.R;
+import com.example.ezsport.Upload_Info;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,56 +29,56 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-public class Content_Dota extends AppCompatActivity {
+
+public class Content_Csgo extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
-    private ImageButton mSelectImage_dota;
-    private EditText mPostTitle_dota;
-    private EditText mPostDesc_dota;
-    private Button mSubmitBtn_dota;
-    private StorageReference mstorageRef_dota;
-    private DatabaseReference mDatabaseref_dota;
-    private ProgressBar mProgressBar;
-    private StorageTask mUploadTask_dota;
-    private Uri mImageUri;
+    private ImageButton mSelectImage_csgo;
+    private EditText mPostTitle_csgo;
+    private EditText mPostDesc_csgo;
+    private Button mSubmitBtn_csgo;
+    private StorageReference mStorageRef_csgo;
+    private DatabaseReference mDatabaseref_csgo;
+    private ProgressBar mProgressBar_csgo;
+    private StorageTask mUploadTask_csgo;
+    private Uri mImageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content__dota);
+        setContentView(R.layout.activity_content__csgo);
 
-        mSelectImage_dota = findViewById(R.id.imageSelect_dota);
-        mPostTitle_dota = findViewById(R.id.titleField_dota);
-        mPostDesc_dota = findViewById(R.id.descField_dota);
-        mProgressBar = findViewById(R.id.progressBar2);
-        mSubmitBtn_dota = findViewById(R.id.submitButton_dota);
+        mSelectImage_csgo = findViewById(R.id.imageSelect_csgo);
+        mPostTitle_csgo = findViewById(R.id.titleField_csgo);
+        mPostDesc_csgo = findViewById(R.id.descField_csgo);
+        mProgressBar_csgo = findViewById(R.id.progressBar2);
+        mSubmitBtn_csgo = findViewById(R.id.submitButton_csgo);
 
-        mstorageRef_dota = FirebaseStorage.getInstance().getReference("Dota");
-        mDatabaseref_dota = FirebaseDatabase.getInstance().getReference("Dota");
+        mStorageRef_csgo = FirebaseStorage.getInstance().getReference("Csgo");
+        mDatabaseref_csgo = FirebaseDatabase.getInstance().getReference("Csgo");
 
-        mSelectImage_dota.setOnClickListener(new View.OnClickListener() {
+        mSelectImage_csgo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openfilechooser();
             }
         });
-        mSubmitBtn_dota.setOnClickListener(new View.OnClickListener() {
+        mSubmitBtn_csgo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUploadTask_dota != null && mUploadTask_dota.isInProgress()) {
-                    Toast.makeText(Content_Dota.this, "sedang upload", Toast.LENGTH_SHORT).show();
+                if (mUploadTask_csgo != null && mUploadTask_csgo.isInProgress()) {
+                    Toast.makeText(Content_Csgo.this, "sedang upload", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadfile();
                 }
             }
         });
-
     }
 
     private void uploadfile() {
         if (mImageUri != null) {
-            final StorageReference fileReferences = mstorageRef_dota.child(System.currentTimeMillis()
+            final StorageReference fileReferences = mStorageRef_csgo.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
-            mUploadTask_dota = fileReferences.putFile(mImageUri)
+            mUploadTask_csgo = fileReferences.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -89,54 +91,55 @@ public class Content_Dota extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mProgressBar.setProgress(0);
+                                    mProgressBar_csgo.setProgress(0);
                                 }
                             }, 500);
-                            Toast.makeText(Content_Dota.this, "Upload berhasil", Toast.LENGTH_LONG).show();
-                            Upload_Info upload = new Upload_Info(mPostTitle_dota.getText().toString(),
-                                    mPostDesc_dota.getText().toString(), downloadurl.toString());
-                            String uploadid = mDatabaseref_dota.push().getKey();
-                            mDatabaseref_dota.child(uploadid).setValue(upload);
+                            Toast.makeText(Content_Csgo.this, "Upload berhasil", Toast.LENGTH_LONG).show();
+                            Upload_Info upload = new Upload_Info(mPostTitle_csgo.getText().toString(),
+                                    mPostDesc_csgo.getText().toString(), downloadurl.toString());
+                            String uploadid = mDatabaseref_csgo.push().getKey();
+                            mDatabaseref_csgo.child(uploadid).setValue(upload);
 
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Content_Dota.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Content_Csgo.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            mProgressBar.setProgress((int) progress);
+                            mProgressBar_csgo.setProgress((int) progress);
                         }
                     });
 
         }
         else {
-            Toast.makeText(Content_Dota.this, "File tidak di temukan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Content_Csgo.this, "File tidak di temukan", Toast.LENGTH_SHORT).show();
 
         }
 
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver cR2 = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR2.getType(uri));
-    }
 
 
-    //mengambil gambar dari storage handpone
+
+
     private void openfilechooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
-    }
+}
+private String getFileExtension(Uri uri) {
 
+        ContentResolver cR2 = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR2.getType(uri));
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -144,7 +147,8 @@ public class Content_Dota extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
-            Picasso.get().load(mImageUri).fit().into(mSelectImage_dota);
+            Picasso.get().load(mImageUri).fit().into(mSelectImage_csgo);
         }
     }
-}
+
+    }

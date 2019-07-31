@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/sidebarheader"
+    android:background="@drawable/gradient_splash"
     android:gravity="bottom"
-    android:padding="16dp"
+    android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:orientation="vertical">
+
     <TextView
+        android:id="@+id/nav_header"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
-        android:textSize="25dp"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="0dp"
         android:text="EzSports"
+        android:textColor="@android:color/white"
 
-        />
+        android:textSize="25dp" />
 </LinearLayout>

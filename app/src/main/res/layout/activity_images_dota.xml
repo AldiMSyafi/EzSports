@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImagesActivity">
+    tools:context=".ImageActivity.ImagesActivity">
 
     <ProgressBar
         android:id="@+id/progress_circle2"
@@ -16,6 +16,6 @@
         android:id="@+id/recycler_view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/sidebarheader"/>
+        android:background="@color/sidebar"/>
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ezsport.Adapter.imageAdapter;
+import com.example.ezsport.HomeActivity;
 import com.example.ezsport.R;
 import com.example.ezsport.Upload;
 import com.example.ezsport.Upload_Info;
@@ -44,6 +45,7 @@ public class Article extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_images, container, false);
+        ((HomeActivity)getActivity()).setActionBarTitle("Article");
 
         mProgressCircle = (ProgressBar) view.findViewById(R.id.progress_circle);
         mRecyclerView =  view.findViewById(R.id.recycler_view);

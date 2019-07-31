@@ -1,6 +1,8 @@
 package com.example.ezsport;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +15,14 @@ import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-import com.example.ezsport.Fragment.Admin;
-import com.example.ezsport.Fragment.Apex;
 import com.example.ezsport.Fragment.Article;
 import com.example.ezsport.Fragment.Csgo;
 import com.example.ezsport.Fragment.Dota;
 import com.example.ezsport.Fragment.Info;
+
+import java.security.acl.AclNotFoundException;
 
 /*
  10116065
@@ -43,6 +46,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private DrawerLayout drawer;
+    private TextView txtview;
 
     //menampilkan navigation view
     @Override
@@ -98,10 +102,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //Menghubungkan tiap fragment yang ada di navigation bar
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.rate){
+            //fungsi rate apps
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id="+ getPackageName())));
+            }catch (ActivityNotFoundException e){
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://play.google.com/store/apps/details?id="+getPackageName())));
+            }
+            //fungsi share apps
+        }else if (id == R.id.share){
+            Intent shareintent = new Intent();
+            shareintent.setAction(Intent.ACTION_SEND);
+            shareintent.putExtra(Intent.EXTRA_TEXT,"https://play.google.com/store/apps/details?id=" + getPackageName());
+            shareintent.setType("text/plain");
+            startActivity(Intent.createChooser(shareintent,"share via"));
+
+        }
         switch (menuItem.getItemId()){
             case R.id.nav_info_tour:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Info()).commit();
+
                 break;
 
             case R.id.nav_article:
@@ -118,11 +142,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Csgo()).commit();
                 break;
-
-            case R.id.nav_apex:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Apex()).commit();
-                break;
             case R.id.nav_admin:
                 Intent l= new Intent(HomeActivity.this,login_admin.class);
                 startActivity(l);
@@ -130,6 +149,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
     //fungsi menutup navigation view
     @Override
