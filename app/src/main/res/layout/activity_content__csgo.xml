@@ -60,7 +60,7 @@
         android:ems="10"
         android:hint="Deskripsi Csgo"
         android:inputType="textCapSentences|textMultiLine"
-        android:maxLength="2000"
+        android:maxLength="10000"
         android:maxLines="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
