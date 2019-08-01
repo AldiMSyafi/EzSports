@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSelect_artikel"
+        app:layout_constraintTop_toBottomOf="@+id/imageSelect_info"
         app:layout_constraintVertical_bias="0.0" />
 
     <android.support.constraint.Guideline
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descField_artikel"
+        app:layout_constraintTop_toBottomOf="@+id/descField_info"
         app:layout_constraintVertical_bias="0.971" />
 
     <ProgressBar
@@ -96,5 +96,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submitButton_artikel" />
+        app:layout_constraintTop_toBottomOf="@+id/submitButton_info" />
 </android.support.constraint.ConstraintLayout>

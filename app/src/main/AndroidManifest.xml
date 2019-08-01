@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ezsport">
+    package="com.aldimsyafi.ezsport">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,21 +11,21 @@
         android:roundIcon="@drawable/logo_kecil4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Content.Content_Csgo" />
-        <activity android:name=".ImageActivity.ImagesActivity_csgo" />
-        <activity android:name=".ImageActivity.ImagesActivity_dota" />
-        <activity android:name=".Content.Content_Dota" />
-        <activity android:name=".Detail.Detail_info" />
-        <activity android:name=".Detail.Detail_Artikel" />
-        <activity android:name=".ImageActivity.ImagesActivity_info" />
-        <activity android:name=".Content.Content_Info" />
-        <activity android:name=".ImageActivity.ImagesActivity" />
-        <activity android:name=".Content.Content_Artikel" />
-        <activity android:name=".Menu_Utama_Admin" />
-        <activity android:name=".login_admin" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.aldimsyafi.ezsport.Content.Content_Csgo" />
+        <activity android:name="com.aldimsyafi.ezsport.ImageActivity.ImagesActivity_csgo" />
+        <activity android:name="com.aldimsyafi.ezsport.ImageActivity.ImagesActivity_dota" />
+        <activity android:name="com.aldimsyafi.ezsport.Content.Content_Dota" />
+        <activity android:name="com.aldimsyafi.ezsport.Detail.Detail_info" />
+        <activity android:name="com.aldimsyafi.ezsport.Detail.Detail_Artikel" />
+        <activity android:name="com.aldimsyafi.ezsport.ImageActivity.ImagesActivity_info" />
+        <activity android:name="com.aldimsyafi.ezsport.Content.Content_Info" />
+        <activity android:name="com.aldimsyafi.ezsport.ImageActivity.ImagesActivity" />
+        <activity android:name="com.aldimsyafi.ezsport.Content.Content_Artikel" />
+        <activity android:name="com.aldimsyafi.ezsport.Menu_Utama_Admin" />
+        <activity android:name="com.aldimsyafi.ezsport.login_admin" />
+        <activity android:name="com.aldimsyafi.ezsport.HomeActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.aldimsyafi.ezsport.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
